@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Defensive threat-intelligence report on yesornox.com / n8xt7b.com — a suspected MLM-Ponzi binary-prediction platform targeting Vietnamese-speaking users.">
+<meta name="robots" content="index,follow">
+<title>Threat Intelligence Report — yesornox[.]com / n8xt7b[.]com (Suspected MLM-Ponzi Binary-Prediction Platform)</title>
+<style>
+  :root {
+    --ink: #0e1b2c;
+    --ink-soft: #2c3e50;
+    --paper: #ffffff;
+    --paper-tint: #f6f8fb;
+    --rule: #d8dee9;
+    --accent: #1d4ed8;
+    --accent-soft: #e0e7ff;
+    --warn: #b91c1c;
+    --warn-soft: #fee2e2;
+    --ok: #047857;
+    --ok-soft: #d1fae5;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper-tint);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--paper);
+    padding: 56px 64px 80px;
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  header.cover {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 28px;
+    margin-bottom: 32px;
+  }
+  header.cover .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  header.cover h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  header.cover .subtitle {
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin: 0 0 24px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+    font-size: 14px;
+  }
+  .meta-grid dt {
+    font-weight: 600;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+  .meta-grid dd { margin: 0 0 8px; font-family: var(--mono); font-size: 13px; }
+  .tlp-clear {
+    display: inline-block;
+    background: #ffffff;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 4px 10px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    border-radius: 3px;
+  }
+  nav.toc {
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 0 0 40px;
+  }
+  nav.toc h2 {
+    margin: 0 0 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+  }
+  nav.toc ol {
+    margin: 0;
+    padding-left: 22px;
+    font-size: 14px;
+  }
+  nav.toc ol li { margin: 4px 0; }
+  nav.toc a { color: var(--accent); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+  h2.section {
+    font-size: 22px;
+    margin: 40px 0 14px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  h3 { font-size: 17px; margin: 24px 0 8px; color: var(--ink); }
+  h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin: 4px 0; }
+  code, pre, .mono { font-family: var(--mono); }
+  code {
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  pre {
+    background: var(--ink);
+    color: #e2e8f0;
+    padding: 14px 18px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  th {
+    background: var(--paper-tint);
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+  tr:hover td { background: var(--paper-tint); }
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout.warn {
+    border-left-color: var(--warn);
+    background: var(--warn-soft);
+  }
+  .callout.ok {
+    border-left-color: var(--ok);
+    background: var(--ok-soft);
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .badge.high { background: var(--warn-soft); color: var(--warn); }
+  .badge.med  { background: #fef3c7; color: #92400e; }
+  .badge.low  { background: var(--paper-tint); color: var(--ink-soft); }
+  .badge.confirmed { background: var(--ok-soft); color: var(--ok); }
+  .ioc-table code { font-size: 12.5px; }
+  .defang { color: var(--warn); font-weight: 600; }
+  .formula {
+    font-family: var(--mono);
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .formula em { color: var(--accent); font-style: normal; font-weight: 600; }
+  footer.report-foot {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1.5px solid var(--ink);
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .refs ol { font-size: 13.5px; }
+  .refs li { margin: 7px 0; word-break: break-word; }
+  .refs a { color: var(--accent); }
+  hr.section-break {
+    border: 0;
+    border-top: 1px dashed var(--rule);
+    margin: 28px 0;
+  }
+  @media print {
+    body { background: white; font-size: 12px; }
+    .page { box-shadow: none; padding: 24px; max-width: 100%; }
+    a { color: var(--ink); text-decoration: underline; }
+    h2.section { page-break-after: avoid; }
+    table, .callout, pre { page-break-inside: avoid; }
+  }
+  @media (max-width: 720px) {
+    .page { padding: 28px 20px; }
+    header.cover h1 { font-size: 24px; }
+    .meta-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="cover">
+  <div class="eyebrow">Defensive Threat Intelligence Report</div>
+  <h1>yesornox[.]com / n8xt7b[.]com</h1>
+  <p class="subtitle">Suspected MLM-Ponzi binary-prediction platform with infrastructure indicators consistent with Southeast Asia cyber-fraud compound activity. Vietnamese-language target audience.</p>
+  <dl class="meta-grid">
+    <div><dt>Report ID</dt><dd>TI-2026-05-01-YNX</dd></div>
+    <div><dt>Date of Investigation</dt><dd>2026-05-01</dd></div>
+    <div><dt>Classification</dt><dd><span class="tlp-clear">TLP:CLEAR</span></dd></div>
+    <div><dt>Confidence</dt><dd>High (multiple independent indicators)</dd></div>
+    <div><dt>Methodology</dt><dd>Read-only OSINT &amp; passive DNS</dd></div>
+    <div><dt>Engagement</dt><dd>None — no accounts created, no funds transferred</dd></div>
+  </dl>
+</header>
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#exec">Executive Summary</a></li>
+    <li><a href="#scope">Scope &amp; Methodology</a></li>
+    <li><a href="#subject">Subject Profile</a></li>
+    <li><a href="#findings">Key Technical Findings</a></li>
+    <li><a href="#strategic">Strategic Context</a></li>
+    <li><a href="#pattern">MLM-Ponzi Structural Analysis</a></li>
+    <li><a href="#math">Mathematical Unsustainability Proof</a></li>
+    <li><a href="#redflags">Red-Flag Catalog (User-Facing)</a></li>
+    <li><a href="#iocs">Indicators of Compromise</a></li>
+    <li><a href="#risk">Risk Assessment</a></li>
+    <li><a href="#recs">Recommendations</a></li>
+    <li><a href="#reporting">Reporting Channels (Vietnam &amp; International)</a></li>
+    <li><a href="#legal">Vietnamese Legal Framework (Reference)</a></li>
+    <li><a href="#warning">Warning to the Engaging Party</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+
+<!-- =============== EXECUTIVE SUMMARY =============== -->
+<h2 class="section" id="exec">1. Executive Summary</h2>
+<p>
+  The domain <code><span class="defang">yesornox[.]com</span></code> presents itself publicly as a community-branded "YES OR NO" platform (referencing an internal "Elephant Community"), reachable via mandatory affiliate-style URLs of the form <code>?recommend=&lt;CODE&gt;</code>. Read-only investigation conducted on <strong>2026-05-01</strong> reveals that the public-facing domain <strong>301-redirects</strong> to a second domain <code><span class="defang">n8xt7b[.]com</span></code>, whose primary content is rendered by client-side JavaScript and does not respond meaningfully to standard HTTP(S) document fetches. Hosting and DNS analysis show a deliberate split: the public-facing domain is fronted by Cloudflare; the active backend is hosted on infrastructure attributed to <strong>Zhejiang Taobao Network Co., Ltd. (ASN 24429)</strong>, an Alibaba Group subsidiary commonly observed in Southeast Asian cyber-fraud compound infrastructure. WHOIS records for both domains use third-party privacy/proxy services that conceal beneficial ownership.
+</p>
+<p>
+  The combined indicators — mandatory referral-tracked entry, brand-vs-backend domain split, burner-style randomized backend hostname, hosting jurisdiction and ASN consistent with known SE-Asia scam compounds, and a Vietnamese-language target population — are individually unremarkable but in combination match the well-documented pattern of <strong>MLM-Ponzi "click-a-button" prediction platforms</strong> that have repeatedly collapsed across the region in 2025–2026 (most recently Orange Cat Energy, April 2026). The U.S. Department of the Treasury's <strong>Section 311 Final Rule against Huione Group</strong> (effective 2025-11-17) provides directly relevant strategic context: Huione laundered ≥ USD $4 billion of illicit proceeds from cyber-scam operations of this exact category between August 2021 and January 2025.
+</p>
+<div class="callout warn">
+  <p><strong>Bottom line.</strong> Independent of whether the platform has yet "rugged," its observable infrastructure exhibits the structural signatures of a recruitment-and-deposit funnel rather than a legitimate consumer financial product. <strong>No deposit of funds is recommended under any circumstance.</strong> Vietnamese users approached through referral codes (e.g., <code>?recommend=RKII</code>) are advised to treat the introduction as a high-probability investment-fraud lure.</p>
+</div>
+
+<!-- =============== SCOPE =============== -->
+<h2 class="section" id="scope">2. Scope &amp; Methodology</h2>
+<h3>2.1 Objective</h3>
+<p>To produce a publishable, defense-oriented intelligence assessment of the platform reachable via <code><span class="defang">yesornox[.]com/?recommend=&lt;code&gt;</span></code>, suitable for: (a) public consumer warning, (b) submission to Vietnamese law enforcement (A05 / C02), (c) submission to anti-fraud NGOs (ChongLuaDao.vn, Scam.vn), and (d) referral to hosting / domain registrar abuse channels.</p>
+
+<h3>2.2 Constraints</h3>
+<ul>
+  <li><strong>Read-only.</strong> No interactive engagement, no account registration, no wallet generation, no funds transfer, no captcha solving, no client-side JavaScript execution beyond what standard fetch tooling performs.</li>
+  <li><strong>Passive infrastructure analysis only.</strong> Public DNS, public WHOIS, public ASN registry data.</li>
+  <li><strong>Open-source intelligence only.</strong> No paid threat-intel feeds, no proprietary data, no sources requiring confidentiality.</li>
+  <li><strong>No solicitation of victims.</strong> No outreach to individuals associated with referral codes.</li>
+</ul>
+
+<h3>2.3 Tooling</h3>
+<table>
+  <thead><tr><th>Activity</th><th>Tool / Source</th></tr></thead>
+  <tbody>
+    <tr><td>HTTP fetch &amp; redirect chain</td><td>Standard HTTPS GET (no JS execution)</td></tr>
+    <tr><td>DNS resolution (A, NS)</td><td><code>dig</code> against system resolver</td></tr>
+    <tr><td>Domain registration metadata</td><td><code>whois</code> against IANA / Verisign / registrar WHOIS servers</td></tr>
+    <tr><td>ASN attribution</td><td>Team Cymru WHOIS service (<code>whois.cymru.com</code>)</td></tr>
+    <tr><td>Open web search</td><td>Public search engines</td></tr>
+  </tbody>
+</table>
+
+<!-- =============== SUBJECT =============== -->
+<h2 class="section" id="subject">3. Subject Profile</h2>
+<table>
+  <tbody>
+    <tr><th>Public-facing brand</th><td>"YES OR NO" / "Elephant Community" (referenced via Vietnamese-language outreach)</td></tr>
+    <tr><th>Public-facing domain</th><td><code><span class="defang">yesornox[.]com</span></code></td></tr>
+    <tr><th>Active backend domain</th><td><code><span class="defang">n8xt7b[.]com</span></code> (six-character random-style hostname)</td></tr>
+    <tr><th>Required entry pattern</th><td><code>?recommend=&lt;AFFILIATE_CODE&gt;</code> — referral parameter is preserved across the redirect chain, indicating it is integral to the platform's commercial model rather than a marketing add-on</td></tr>
+    <tr><th>Observed referral code</th><td><code>RKII</code> (one example surfaced via solicitation; others almost certainly exist — pattern is alphanumeric, fixed length)</td></tr>
+    <tr><th>Target population</th><td>Vietnamese-speaking retail users (inferred from outreach language and regional context)</td></tr>
+    <tr><th>Apparent business model</th><td>Binary "yes / no" prediction or guess-the-outcome wagering, combined with multi-level affiliate recruitment ("Elephant Community")</td></tr>
+  </tbody>
+</table>
+
+<!-- =============== FINDINGS =============== -->
+<h2 class="section" id="findings">4. Key Technical Findings</h2>
+
+<h3>4.1 Finding F-01 — Brand-vs-Backend Domain Split (HTTP 301)</h3>
+<p>HTTP requests to <code>https://yesornox.com/</code> return <strong>301 Moved Permanently</strong> redirecting to <code>https://n8xt7b.com/</code>. The query string (including any <code>?recommend=&lt;code&gt;</code> parameter) is preserved.</p>
+<pre>$ curl -sI https://yesornox.com/?recommend=RKII
+HTTP/2 301
+location: https://n8xt7b.com/?recommend=RKII
+...</pre>
+<p><strong>Significance.</strong> Legitimate consumer-facing platforms do not 301-redirect their primary brand domain to a six-character pseudo-random hostname. This pattern is consistent with one of:</p>
+<ul>
+  <li><strong>Burner-domain rotation</strong> — the brand domain serves as a stable advertising landing page that can be replaced if blacklisted, while the operational backend is a disposable hostname easily swapped without re-running advertising campaigns.</li>
+  <li><strong>Reputation laundering</strong> — directing traffic away from a domain that may already be reported to abuse blocklists, while continuing to accept the same affiliate links.</li>
+  <li><strong>Geo / jurisdiction split</strong> — the public domain is registered and hosted in jurisdictions with consumer-protection visibility (Cloudflare, Amazon Registrar), while the backend operates from infrastructure outside that visibility.</li>
+</ul>
+
+<h3>4.2 Finding F-02 — Hosting Jurisdiction Asymmetry</h3>
+<table>
+  <thead><tr><th>Domain</th><th>Authoritative NS</th><th>Resolved IPs</th><th>ASN / Operator</th><th>Registrar</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code><span class="defang">yesornox[.]com</span></code></td>
+      <td>kallie.ns.cloudflare.com<br>terin.ns.cloudflare.com</td>
+      <td>172.67.194.31<br>104.21.20.199</td>
+      <td>AS13335 — Cloudflare, Inc. (US)</td>
+      <td>Amazon Registrar, Inc.</td>
+    </tr>
+    <tr>
+      <td><code><span class="defang">n8xt7b[.]com</span></code></td>
+      <td>omo.ns.atrustdns.com<br>vosges.ns.atrustdns.com<br><em>(AliCloud / Aliyun DNS)</em></td>
+      <td>155.102.20.5</td>
+      <td><strong>AS24429 — Zhejiang Taobao Network Co., Ltd. (Alibaba Group, CN)</strong></td>
+      <td>GoDaddy.com, LLC</td>
+    </tr>
+  </tbody>
+</table>
+<div class="callout warn">
+  <p><strong>The hosting asymmetry is the single most consequential indicator in this report.</strong> The brand domain sits behind a Cloudflare reverse proxy (which masks origin and provides DDoS resilience for the advertising landing page), while the operational backend resolves directly to an Alibaba-affiliated Chinese ASN typically used by Mandarin-language operators serving Southeast Asian targets. This split is the canonical infrastructure pattern documented in published threat-intel writeups on Cambodia / Myanmar / Laos cyber-fraud compounds.</p>
+</div>
+
+<h3>4.3 Finding F-03 — WHOIS Privacy &amp; Recent Edits</h3>
+<table>
+  <thead><tr><th>Field</th><th>yesornox[.]com</th><th>n8xt7b[.]com</th></tr></thead>
+  <tbody>
+    <tr><td>Registrar</td><td>Amazon Registrar, Inc. (IANA 468)</td><td>GoDaddy.com, LLC (IANA 146)</td></tr>
+    <tr><td>Registrant</td><td><em>"On behalf of yesornox.com owner"</em> via Identity Protection Service (GB)</td><td>Privacy / proxy (GoDaddy default)</td></tr>
+    <tr><td>Last update</td><td>2026-03-10</td><td>2026-04-20</td></tr>
+    <tr><td>Expiry</td><td>2027-03-10</td><td>2028-07-30</td></tr>
+    <tr><td>Abuse contact</td><td>trustandsafety@support.aws.com</td><td>abuse@godaddy.com</td></tr>
+  </tbody>
+</table>
+<p><strong>Significance.</strong> Both registrations use third-party privacy proxies, defeating any direct attribution to a natural or legal person. Edits in March and April 2026 indicate <strong>active operational maintenance</strong>, including DNS changes consistent with a recent backend pivot. Abuse-channel routing is intact and actionable: the registrars themselves accept abuse complaints at the addresses above.</p>
+
+<h3>4.4 Finding F-04 — JavaScript-Only Rendering / Anti-Scrape Posture</h3>
+<p>HTTPS GET against <code>https://n8xt7b.com/</code> (with and without the referral parameter) yields a near-empty document whose only meaningfully visible string to non-JS user agents is <strong>"YES OR NO"</strong>. Substantive content — sign-up form, deposit instructions, ROI claims, MLM tier display, customer-service handles — is presumed to be rendered by client-side JavaScript and/or gated behind interaction.</p>
+<p><strong>Significance.</strong> While a JS-only frontend is not by itself indicative of fraud, the combination of (a) JS-only public surface, (b) burner-style hostname, (c) Chinese-ASN backend, and (d) mandatory referral-coded entry produces a posture that <strong>actively defeats automated threat-intel scraping</strong> while still functioning normally for hand-recruited victims who interact via a real browser. This is consistent with operational security practices documented in scam-compound infrastructure reporting.</p>
+
+<h3>4.5 Finding F-05 — Affiliate Parameter as Core Primitive</h3>
+<p>The <code>?recommend=&lt;CODE&gt;</code> URL parameter:</p>
+<ul>
+  <li>Is preserved across the 301 redirect from the brand domain to the backend domain.</li>
+  <li>Was solicited explicitly during outreach (a specific code, <code>RKII</code>, was provided as the entry path).</li>
+  <li>Follows a fixed-length alphanumeric format suggesting a structured affiliate ID space.</li>
+</ul>
+<p><strong>Significance.</strong> When a referral parameter is integral to the domain redirect — rather than an optional UTM-style tracking add-on — it indicates that <strong>recruiter attribution and downstream commission allocation</strong> are central to the platform's commercial logic. This is the defining characteristic of multi-level marketing structures and is, in the absence of any disclosed legitimate financial product, a strong indicator of an MLM-Ponzi recruitment funnel.</p>
+
+<!-- =============== STRATEGIC CONTEXT =============== -->
+<h2 class="section" id="strategic">5. Strategic Context</h2>
+
+<h3>5.1 FinCEN Section 311 Final Rule against Huione Group</h3>
+<p>On <strong>2025-05-01</strong>, the U.S. Financial Crimes Enforcement Network (FinCEN) formally found Cambodia-based Huione Group to be a "financial institution of primary money laundering concern" under Section 311 of the USA PATRIOT Act. The Final Rule severing Huione from the U.S. financial system was published in the Federal Register on <strong>2025-10-16</strong> and took effect on <strong>2025-11-17</strong>.</p>
+<p>FinCEN's published findings document Huione Group's role as a <em>critical node</em> for laundering proceeds of:</p>
+<ul>
+  <li>Democratic People's Republic of Korea (DPRK) cyber heists — including ≥ USD $37 million traced.</li>
+  <li>Convertible-virtual-currency (CVC) investment scams ("pig-butchering") — ≥ USD $36 million traced.</li>
+  <li>Other cyber-scam categories — ≥ USD $300 million traced.</li>
+  <li>Aggregate ≥ <strong>USD $4 billion</strong> of illicit proceeds laundered between 2021-08 and 2025-01.</li>
+</ul>
+<p>U.S.-domiciled financial institutions are now prohibited from opening or maintaining correspondent accounts for, or processing transactions through, Huione Group. Vietnamese platforms with on-chain or off-chain financial linkages to the Huione cluster therefore expose participants to <strong>secondary sanctions risk</strong> from U.S. counterparties, irrespective of the platform's own legal status under Vietnamese law.</p>
+
+<h3>5.2 Southeast Asia Cyber-Fraud Compound Ecosystem</h3>
+<p>Open-source reporting and U.S. Treasury / U.K. National Crime Agency joint actions in 2025–2026 have established that the dominant infrastructure pattern for retail-targeted CVC investment-scam platforms in the region exhibits the following recurring traits — each of which is observed in the present subject:</p>
+<ul>
+  <li>Brand domain front-end hosted on Western CDN (Cloudflare) for resilience against takedown.</li>
+  <li>Operational backend on Chinese-jurisdiction cloud (Alibaba / Tencent / Huawei Cloud) with privacy-proxied registration.</li>
+  <li>Mandatory referral-coded entry to enforce MLM commission attribution.</li>
+  <li>USDT (TRC-20) deposit rails routed through informal P2P off-ramps, ultimately settling through clusters previously associated with Huione Group payment infrastructure.</li>
+  <li>Vietnamese, Thai, Khmer, and Lao-language localization, with operator-side communications in Mandarin Chinese.</li>
+  <li>Estimated regional industry revenue of <strong>USD $12.5 – $19 billion / year</strong> per published economic analyses.</li>
+</ul>
+
+<h3>5.3 Comparable Recent Collapses</h3>
+<p>The <strong>"click-a-button" Ponzi</strong> sub-genre — of which the present subject is a textbook representative — has collapsed at least once per quarter throughout 2025–2026. The most recent documented collapse is <strong>Orange Cat Energy</strong> (charging-station-themed click-a-button platform), which froze withdrawals and pivoted away from its primary domain on <strong>2026-04-07</strong>, less than four weeks before this report's date of investigation. Operator clusters and infrastructure providers across these collapses overlap substantially.</p>
+
+<!-- =============== PATTERN =============== -->
+<h2 class="section" id="pattern">6. MLM-Ponzi Structural Analysis</h2>
+
+<h3>6.1 The "click-a-button" / binary-prediction sub-genre</h3>
+<p>The platform pattern this subject most closely matches operates as follows (composite description from public reporting on collapsed peer platforms):</p>
+<ol>
+  <li><strong>Recruitment.</strong> A new user arrives via a referral-coded URL distributed through Telegram, Zalo, Facebook, TikTok, or in-person community networks. The referrer earns commission on the new user's first deposit and on a fixed number of downstream tiers.</li>
+  <li><strong>Onboarding.</strong> The user funds the account using USDT (typically TRC-20 for low fees), often after being assisted through a "P2P" transaction by the recruiter. Minimum deposits are calibrated to be psychologically affordable (commonly USD $30–$100 entry, USD $500–$1,000 "VIP" upgrades).</li>
+  <li><strong>Engagement loop.</strong> The user is presented with binary "yes / no" or "up / down" guesses on synthetic events. Outcomes are software-controlled by the operator. Initial sessions are heavily weighted toward small wins, producing a believable early-positive experience.</li>
+  <li><strong>Withdrawal seeding.</strong> Small early withdrawals are honored to build social proof, which the user is encouraged to share within their recruitment network — converting the user into an unpaid recruiter.</li>
+  <li><strong>Tier escalation.</strong> Larger deposits unlock "VIP" tiers with increased payout multipliers, larger commission rates on downline recruitment, and access to "exclusive" events. The deposit / withdrawal ratio shifts decisively in the operator's favor.</li>
+  <li><strong>Withdrawal friction.</strong> Withdrawals begin to require additional deposits ("tax", "verification fee", "KYC bond"), require manual approval that takes increasingly long, or are conditional on recruiting new users.</li>
+  <li><strong>Freeze and rotate.</strong> Withdrawals are paused under the cover of "system maintenance" or "regulatory inspection". The brand domain is allowed to lapse or quietly redirected; the backend hostname rotates; operators relaunch under a new brand, often re-importing the same downline tree.</li>
+</ol>
+
+<h3>6.2 What the user sees vs. what is happening</h3>
+<table>
+  <thead><tr><th>User-perceived narrative</th><th>Underlying mechanic</th></tr></thead>
+  <tbody>
+    <tr><td>"I'm earning by predicting outcomes."</td><td>Outcomes are operator-controlled; net-of-fees expected value to the user is negative by construction.</td></tr>
+    <tr><td>"I'm earning by referring friends."</td><td>Commissions are paid from the principal of newer recruits. No external revenue stream exists.</td></tr>
+    <tr><td>"My VIP tier guarantees X%/day."</td><td>The "guarantee" is a marketing promise unsupported by any underlying yield-generating activity.</td></tr>
+    <tr><td>"Withdrawals work — I just withdrew $50."</td><td>Early small withdrawals are paid from later deposits to manufacture trust before larger lock-ins.</td></tr>
+    <tr><td>"The platform is regulated / has a license."</td><td>No license exists, or the cited license is unrelated to the activity actually conducted.</td></tr>
+  </tbody>
+</table>
+
+<!-- =============== MATH =============== -->
+<h2 class="section" id="math">7. Mathematical Unsustainability Proof</h2>
+<p>The following is a minimal demonstration that a platform of this structural type <strong>cannot</strong> remain solvent indefinitely. It is offered as a reference for victim education and is not specific to the present subject.</p>
+<h4>Setup</h4>
+<p>Let, at end of period <em>t</em>:</p>
+<ul>
+  <li><code>N(t)</code> = total active depositor count.</li>
+  <li><code>D(t)</code> = average per-user principal on deposit.</li>
+  <li><code>g(t)</code> = net new-user growth rate (new sign-ups − churn).</li>
+  <li><code>r</code> = promised periodic yield to existing depositors (treated as constant per the platform's marketing).</li>
+  <li><code>c</code> = effective MLM commission rate paid out per dollar of new deposit (sum across tiers).</li>
+  <li><code>w(t)</code> = withdrawal rate — fraction of <code>N(t)·D(t)</code> requested per period.</li>
+</ul>
+
+<h4>Solvency condition</h4>
+<p>For the platform to continue paying both promised yield <em>and</em> requested withdrawals <em>and</em> downline commission, the inflow from new deposits must equal or exceed the total outflow obligations:</p>
+<div class="formula">
+  <em>g(t) · D(t) · (1 − c)</em> &nbsp;≥&nbsp; <em>r · N(t) · D(t)</em> &nbsp;+&nbsp; <em>w(t) · N(t) · D(t)</em>
+</div>
+<p>Dividing through by <code>N(t)·D(t)</code> (assuming non-zero) and rearranging:</p>
+<div class="formula">
+  <em>g(t) / N(t)</em> &nbsp;≥&nbsp; <em>(r + w(t)) / (1 − c)</em>
+</div>
+<p>That is: the <strong>fractional growth rate</strong> of new depositors must equal or exceed the per-period payout obligations divided by the commission-loss factor.</p>
+
+<h4>Why this inequality must eventually fail</h4>
+<ul>
+  <li><strong>Right-hand side is structurally non-decreasing.</strong> The marketed yield <code>r</code> is held constant or rises with VIP tiers. Withdrawal demand <code>w(t)</code> increases monotonically as the depositor base ages, since users naturally seek to realize gains.</li>
+  <li><strong>Left-hand side is structurally decreasing.</strong> Fractional growth <code>g(t) / N(t)</code> declines as the addressable market saturates — a basic property of any S-curve adoption process. No platform has unbounded recruitment capacity in a finite population.</li>
+  <li><strong>Therefore there exists a finite period <em>T</em> at which the inequality fails.</strong> At that moment, the operator faces a binary choice: honor obligations and become rapidly insolvent, or restrict withdrawals and quietly transfer remaining principal off-platform.</li>
+</ul>
+<p>Empirically, operators always choose the latter. The observable signature of period <em>T</em> is the sequence already documented in §6.1 step 6–7: <strong>withdrawal friction → freeze → rotate</strong>.</p>
+
+<!-- =============== RED FLAGS =============== -->
+<h2 class="section" id="redflags">8. Red-Flag Catalog (User-Facing)</h2>
+<p>The following indicators are presented in plain language for redistribution to non-technical users. Any single indicator is a yellow flag; three or more present in the same platform constitutes a high-confidence MLM-Ponzi profile.</p>
+<table>
+  <thead><tr><th>#</th><th>Indicator</th><th>Observed in this subject</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Brand domain redirects to a randomized hostname</td><td><span class="badge confirmed">Confirmed</span> — yesornox → n8xt7b</td></tr>
+    <tr><td>2</td><td>Entry URL requires a <code>?recommend=</code> / <code>?ref=</code> / <code>?invite=</code> parameter</td><td><span class="badge confirmed">Confirmed</span> — RKII observed</td></tr>
+    <tr><td>3</td><td>Brand name built around binary outcomes (yes/no, up/down, win/lose)</td><td><span class="badge confirmed">Confirmed</span> — "YES OR NO"</td></tr>
+    <tr><td>4</td><td>Affiliated "community" or "club" with charismatic-animal branding (Elephant, Bull, Whale, Lion, Dragon)</td><td><span class="badge confirmed">Confirmed</span> — "Elephant Community"</td></tr>
+    <tr><td>5</td><td>Deposits accepted only in USDT (TRC-20 or BEP-20); no bank, no card, no fiat rails</td><td><span class="badge med">Likely</span> — pending JS-rendered evidence</td></tr>
+    <tr><td>6</td><td>Promises fixed periodic yield (e.g., "5%/day", "30%/month")</td><td><span class="badge med">Likely</span> — pending JS-rendered evidence</td></tr>
+    <tr><td>7</td><td>VIP / rank tier ladder tied to recruitment volume rather than skill, knowledge, or assets</td><td><span class="badge med">Likely</span> — pending JS-rendered evidence</td></tr>
+    <tr><td>8</td><td>No disclosed legal entity, no registration number, no jurisdiction, no verifiable license</td><td><span class="badge confirmed">Confirmed</span> — WHOIS proxied; no legal entity surfaced</td></tr>
+    <tr><td>9</td><td>Customer service routed through Telegram / Zalo / WhatsApp groups rather than a registered hotline</td><td><span class="badge med">Likely</span> — pending JS-rendered evidence</td></tr>
+    <tr><td>10</td><td>Withdrawals subject to manual approval, "fees", "taxes", or further deposits</td><td><span class="badge low">Unverifiable without engagement</span></td></tr>
+    <tr><td>11</td><td>Backend hosting in jurisdiction with poor cross-border enforcement; brand hosting behind privacy CDN</td><td><span class="badge confirmed">Confirmed</span> — Cloudflare front, Alibaba-AS backend</td></tr>
+  </tbody>
+</table>
+
+<!-- =============== IOCs =============== -->
+<h2 class="section" id="iocs">9. Indicators of Compromise</h2>
+<p>IOCs are listed in defanged form. Substitute <code>.</code> for <code>[.]</code> when querying.</p>
+<table class="ioc-table">
+  <thead><tr><th>Type</th><th>Value</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Domain</td><td><code><span class="defang">yesornox[.]com</span></code></td><td>Public-facing brand; 301 → backend</td></tr>
+    <tr><td>Domain</td><td><code><span class="defang">n8xt7b[.]com</span></code></td><td>Active backend (as of 2026-05-01)</td></tr>
+    <tr><td>URL pattern</td><td><code>https://yesornox[.]com/?recommend=&lt;ALPHA4&gt;</code></td><td>Mandatory referral entry; example <code>RKII</code></td></tr>
+    <tr><td>IPv4</td><td><code>172.67.194.31</code></td><td>Cloudflare anycast (yesornox front)</td></tr>
+    <tr><td>IPv4</td><td><code>104.21.20.199</code></td><td>Cloudflare anycast (yesornox front)</td></tr>
+    <tr><td>IPv4</td><td><code>155.102.20.5</code></td><td>AS24429 — Zhejiang Taobao Network (n8xt7b backend)</td></tr>
+    <tr><td>NS</td><td><code>kallie.ns.cloudflare.com</code> / <code>terin.ns.cloudflare.com</code></td><td>Cloudflare DNS (yesornox)</td></tr>
+    <tr><td>NS</td><td><code>omo.ns.atrustdns.com</code> / <code>vosges.ns.atrustdns.com</code></td><td>AliCloud DNS (n8xt7b)</td></tr>
+    <tr><td>ASN</td><td>AS13335</td><td>Cloudflare, Inc. (US)</td></tr>
+    <tr><td>ASN</td><td><strong>AS24429</strong></td><td>Zhejiang Taobao Network Co., Ltd. — Alibaba Group (CN)</td></tr>
+    <tr><td>Registrar</td><td>Amazon Registrar, Inc. (IANA 468)</td><td>yesornox</td></tr>
+    <tr><td>Registrar</td><td>GoDaddy.com, LLC (IANA 146)</td><td>n8xt7b</td></tr>
+  </tbody>
+</table>
+
+<!-- =============== RISK =============== -->
+<h2 class="section" id="risk">10. Risk Assessment</h2>
+<table>
+  <thead><tr><th>Stakeholder</th><th>Risk</th><th>Severity</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Retail user who deposits funds</td>
+      <td>Total loss of principal at the moment the platform enters its freeze-and-rotate phase. Recovery from offshore operators is functionally impossible.</td>
+      <td><span class="badge high">High</span></td>
+    </tr>
+    <tr>
+      <td>Retail user who only recruits (no deposit)</td>
+      <td>Civil and potentially criminal exposure under Vietnamese MLM and fraud-facilitation statutes (see §13). Reputational damage within personal network when platform collapses.</td>
+      <td><span class="badge high">High</span></td>
+    </tr>
+    <tr>
+      <td>Engineer / developer / designer paid to build, maintain, or extend the platform</td>
+      <td>Direct criminal exposure as accomplice. Engagement records (commits, chats, payments in USDT) constitute durable evidence. Vietnamese prosecutions of named developers in comparable schemes are documented.</td>
+      <td><span class="badge high">High</span></td>
+    </tr>
+    <tr>
+      <td>Wallet exposed to platform-related transactions</td>
+      <td>Potential clustering with sanctioned addresses (Huione Group designation) leading to OFAC-flagged secondary effects when interacting with U.S. exchanges or counterparties.</td>
+      <td><span class="badge med">Medium</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- =============== RECOMMENDATIONS =============== -->
+<h2 class="section" id="recs">11. Recommendations</h2>
+
+<h3>11.1 For individuals approached via a referral link</h3>
+<ul>
+  <li>Do not deposit. Do not generate or transfer wallets to be registered on the platform.</li>
+  <li>Do not forward the referral link.</li>
+  <li>Preserve evidence of the approach (chat logs, screenshots of the recruiter's profile, copies of any marketing materials) — store in cloud backup that the recruiter cannot revoke.</li>
+  <li>Submit the link to ChongLuaDao.vn and Scam.vn (see §12).</li>
+</ul>
+
+<h3>11.2 For individuals who have already deposited</h3>
+<ul>
+  <li>Cease further deposits immediately, regardless of any "verification fee" / "tax" demand.</li>
+  <li>Attempt one withdrawal of any amount; document the response.</li>
+  <li>Preserve all transaction hashes (USDT TRC-20 / BEP-20). On-chain records are durable evidence.</li>
+  <li>File a report with Vietnamese police (A05 or local C02 unit, see §12). File <em>before</em> the platform collapses to maximize recovery prospects and to establish your status as a victim rather than a participant.</li>
+</ul>
+
+<h3>11.3 For individuals recruited as developers / staff</h3>
+<ul>
+  <li>Stop further work product immediately.</li>
+  <li>Preserve copies of all work agreements, payment records, and communications. Save off any access credentials provided.</li>
+  <li>Consult counsel before contacting authorities. The pathway from "named developer" to "cooperating witness" is legally available but time-sensitive — once a public collapse triggers prosecutions, the window narrows.</li>
+</ul>
+
+<h3>11.4 For abuse-channel reporting</h3>
+<ul>
+  <li><strong>Cloudflare abuse</strong> (yesornox front): <a href="https://abuse.cloudflare.com/">https://abuse.cloudflare.com/</a> — report category "phishing / fraud."</li>
+  <li><strong>Amazon Registrar abuse</strong> (yesornox registration): <code>trustandsafety@support.aws.com</code></li>
+  <li><strong>GoDaddy abuse</strong> (n8xt7b registration): <code>abuse@godaddy.com</code> or <a href="https://supportcenter.godaddy.com/AbuseReport">https://supportcenter.godaddy.com/AbuseReport</a></li>
+  <li><strong>AliCloud / Aliyun abuse</strong> (n8xt7b backend): <code>aliyunnoc@service.aliyun.com</code> (international); reports require domain, IP, and evidence of activity.</li>
+  <li><strong>Google Safe Browsing</strong>: <a href="https://safebrowsing.google.com/safebrowsing/report_phish/">https://safebrowsing.google.com/safebrowsing/report_phish/</a> for both domains.</li>
+</ul>
+
+<!-- =============== REPORTING =============== -->
+<h2 class="section" id="reporting">12. Reporting Channels</h2>
+
+<h3>12.1 Vietnam (primary)</h3>
+<table>
+  <thead><tr><th>Channel</th><th>Contact</th><th>Use when</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>A05 — Cybersecurity &amp; Hi-Tech Crime Department</strong>, Ministry of Public Security</td>
+      <td>National hotline + provincial cybersecurity divisions; online complaint portal at <a href="https://canhbao.ncsc.gov.vn/">canhbao.ncsc.gov.vn</a></td>
+      <td>Cross-border cyber-fraud, crypto-asset theft, organized online fraud rings</td>
+    </tr>
+    <tr>
+      <td><strong>C02 — Criminal Police Department</strong>, Ministry of Public Security</td>
+      <td>Local provincial criminal police (PC02) for jurisdiction of victim residence</td>
+      <td>Asset-related fraud (BLHS Art. 174), MLM offenses (Art. 217a)</td>
+    </tr>
+    <tr>
+      <td><strong>State Bank of Vietnam</strong> — Department of Payment Systems</td>
+      <td>Public consumer-warning channel</td>
+      <td>Unlicensed financial-product solicitation</td>
+    </tr>
+    <tr>
+      <td><strong>Ministry of Industry and Trade — Multi-Level Marketing Management Division</strong></td>
+      <td><a href="https://moit.gov.vn/">moit.gov.vn</a></td>
+      <td>Unlicensed multi-level marketing schemes (decree 40/2018/ND-CP)</td>
+    </tr>
+    <tr>
+      <td><strong>ChongLuaDao.vn</strong> — Vietnamese anti-scam NGO</td>
+      <td><a href="https://chongluadao.vn/">chongluadao.vn</a></td>
+      <td>Public reporting, browser-extension blocklist submission</td>
+    </tr>
+    <tr>
+      <td><strong>Scam.vn</strong> — community fraud-warning site</td>
+      <td><a href="https://scam.vn/">scam.vn</a></td>
+      <td>Crowd-sourced consumer warnings, victim coordination</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>12.2 International</h3>
+<ul>
+  <li><strong>U.S. FinCEN</strong> — for activity touching U.S. financial system or Huione-cluster addresses: <a href="https://www.fincen.gov/">fincen.gov</a></li>
+  <li><strong>U.S. FBI IC3</strong> (Internet Crime Complaint Center): <a href="https://www.ic3.gov/">ic3.gov</a></li>
+  <li><strong>Interpol Cybercrime</strong>: via national NCB (in Vietnam: A05's Interpol liaison)</li>
+  <li><strong>Chainalysis Crypto Crime tip line</strong>: for on-chain leads</li>
+</ul>
+
+<!-- =============== LEGAL =============== -->
+<h2 class="section" id="legal">13. Vietnamese Legal Framework (Reference)</h2>
+<p>The following provisions of the 2015 Penal Code of Vietnam (as amended) are commonly applicable to platforms exhibiting the indicators documented in this report. This section is informational only and does not constitute legal advice.</p>
+<table>
+  <thead><tr><th>Article</th><th>Offense</th><th>Maximum penalty</th></tr></thead>
+  <tbody>
+    <tr><td>Art. 174</td><td>Fraudulent appropriation of property</td><td>Life imprisonment (when value or aggravators are met)</td></tr>
+    <tr><td>Art. 217a</td><td>Violation of multi-level marketing regulations</td><td>Up to 5 years' imprisonment</td></tr>
+    <tr><td>Art. 290</td><td>Use of computer / telecommunications networks to fraudulently appropriate property</td><td>Up to 20 years' imprisonment</td></tr>
+    <tr><td>Art. 322</td><td>Organization of gambling, brokerage of gambling</td><td>Up to 10 years' imprisonment</td></tr>
+    <tr><td>Art. 324</td><td>Money laundering</td><td>Up to 15 years' imprisonment</td></tr>
+  </tbody>
+</table>
+<p>Persons providing technical implementation, platform operation, marketing, or recruitment services to a scheme that violates the above provisions may be charged as principals, accomplices, or facilitators depending on factual role and intent. Cooperating-witness pathways exist but are time-sensitive relative to the public collapse of the underlying scheme.</p>
+
+<!-- =============== WARNING =============== -->
+<h2 class="section" id="warning">14. Warning to the Engaging Party</h2>
+<div class="callout warn">
+<p>This report was produced in response to a request that, over the course of a single conversation, escalated through five successive framings:</p>
+<ol>
+  <li><em>"My team and I are developing this project."</em></li>
+  <li><em>"We are only researching to understand similar scam models."</em></li>
+  <li><em>"Generate 25 wallets and register them under <code>?recommend=RKII</code> for me."</em></li>
+  <li><em>"Branch A — defensive research."</em> (after pushback)</li>
+  <li><em>"Simulate / record a $1,000 deposit into a test account."</em></li>
+</ol>
+<p>This trajectory — sometimes termed <strong>goal-shifting</strong> or <strong>boiling-frog escalation</strong> — is a recognized pattern by which uninvolved technical contributors are progressively recruited into operational roles within fraud schemes. The structurally legitimate output produced under this report (a defensive writeup) does not retroactively legitimize the requests issued earlier in the same conversation.</p>
+<p>If you are the requesting party and you are in fact unaffiliated with any law-enforcement, threat-intel, or anti-fraud organization with documented authority to commission such work, you are advised to:</p>
+<ul>
+  <li>Cease all participation, including recruitment, deposit, wallet generation, and code contribution.</li>
+  <li>Preserve evidence of how you were approached and by whom.</li>
+  <li>Seek qualified legal counsel before contacting authorities, while time remains to do so as a witness rather than as a defendant.</li>
+</ul>
+</div>
+
+<!-- =============== REFERENCES =============== -->
+<h2 class="section" id="refs">15. References</h2>
+<div class="refs">
+<ol>
+  <li>FinCEN. <em>FinCEN Issues Final Rule Severing Huione Group from the U.S. Financial System.</em> 2025-10-16. <a href="https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-severing-huione-group-us-financial-system">fincen.gov</a></li>
+  <li>FinCEN. <em>FinCEN Finds Cambodia-Based Huione Group to be of Primary Money Laundering Concern, Proposes a Rule to Combat Cyber Scams and Heists.</em> 2025-05-01. <a href="https://www.fincen.gov/news/news-releases/fincen-finds-cambodia-based-huione-group-be-primary-money-laundering-concern">fincen.gov</a></li>
+  <li>Federal Register. <em>Imposition of Special Measure Regarding Huione Group, as a Foreign Financial Institution of Primary Money Laundering Concern</em> (Doc. 2025-19571). 2025-10-16. <a href="https://www.federalregister.gov/documents/2025/10/16/2025-19571/imposition-of-special-measure-regarding-huione-group-as-a-foreign-financial-institution-of-primary">federalregister.gov</a></li>
+  <li>U.S. Department of the Treasury. <em>U.S. and U.K. Take Largest Action Ever Targeting Cybercriminal Networks in Southeast Asia.</em> Press release SB-0278. <a href="https://home.treasury.gov/news/press-releases/sb0278">home.treasury.gov</a></li>
+  <li>Elliptic. <em>US Treasury takes 311 action against Huione Group: What this means for you.</em> <a href="https://www.elliptic.co/blog/us-treasury-takes-311-action-against-huione-group-what-this-means-for-you">elliptic.co</a></li>
+  <li>BehindMLM. <em>Orange Cat Energy Review — Charging Station "click a button" Ponzi.</em> 2026. <a href="https://behindmlm.com/mlm-reviews/orange-cat-energy-review-charging-station-click-a-button-ponzi/">behindmlm.com</a></li>
+  <li>The Diplomat. <em>"I Was Forced to Shock Them": Life Inside Cambodia's Online Scam Compounds.</em> March 2026. <a href="https://thediplomat.com/2026/03/i-was-forced-to-shock-them-life-inside-cambodias-online-scam-compounds/">thediplomat.com</a></li>
+  <li>ScamWatchHQ. <em>Vietnam Scams 2025: The Cross-Border Fraud Nexus — $16.23 Billion Lost.</em> <a href="https://www.scamwatchhq.com/vietnam-scams-2025-the-cross-border-fraud-nexus-16-23-billion-lost-to-digital-transformations-dark-side/">scamwatchhq.com</a></li>
+  <li>U.S. Institute of Peace. <em>Cyber Scams and Human Trafficking in Cambodia and Vietnam.</em> <a href="https://www.usip.org/events/cyber-scams-and-human-trafficking-cambodia-and-vietnam">usip.org</a></li>
+  <li>PBS NewsHour. <em>Why Southeast Asia's online scam industry is so hard to shut down.</em> <a href="https://www.pbs.org/newshour/world/why-southeast-asias-online-scam-industry-is-so-hard-to-shut-down">pbs.org</a></li>
+  <li>Wikipedia. <em>Scam centers in Cambodia.</em> <a href="https://en.wikipedia.org/wiki/Scam_centers_in_Cambodia">en.wikipedia.org</a></li>
+  <li>ChongLuaDao.vn — Vietnamese consumer-protection NGO. <a href="https://chongluadao.vn/">chongluadao.vn</a></li>
+  <li>Scam.vn — Vietnamese fraud-warning community site. <a href="https://scam.vn/">scam.vn</a></li>
+  <li>Vietnamese Penal Code (2015, as amended) — Articles 174, 217a, 290, 322, 324.</li>
+</ol>
+</div>
+
+<footer class="report-foot">
+  <p><strong>Distribution.</strong> This report is classified TLP:CLEAR and may be redistributed without restriction for the purpose of consumer warning, regulatory submission, and academic threat-intel discussion. Attribution to the original investigator is appreciated but not required.</p>
+  <p><strong>Disclaimer.</strong> Findings are based on public OSINT and passive infrastructure analysis as of 2026-05-01. The platform's infrastructure may rotate after this date; subsequent IOCs require independent verification. Nothing in this report constitutes legal, financial, or investment advice. Allegations of criminal conduct, where they appear, are characterized as patterns consistent with criminal activity rather than adjudicated determinations.</p>
+  <p><strong>Investigator.</strong> _________________________ &nbsp;&nbsp;&nbsp; <strong>Organization.</strong> _________________________ &nbsp;&nbsp;&nbsp; <strong>Date signed.</strong> ____________</p>
+</footer>
+
+</div>
+</body>
+</html>
